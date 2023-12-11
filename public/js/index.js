@@ -7,11 +7,20 @@ $(document).ready(function() {
             let checkin = new Date(value.check_in).toLocaleDateString('pt-BR', {timeZone: 'UTC'})
             let checkout = new Date(value.check_out).toLocaleDateString('pt-BR', {timeZone: 'UTC'})
 
+            let status = {
+                1: "Pendente",
+                2: "Confirmada",
+                3: "Recuperada",
+                0: "Cancelada"
+            }
+
+            let currentStatus = value.status
+
 
             row.append($('<td>').text(value.id));
             row.append($('<td>').text(value.booking_code));
             row.append($('<td>').text(value.booking_holder));
-            row.append($('<td>').text(value.status));
+            row.append($('<td>').text(status[currentStatus]));
             row.append($('<td>').text(value.kids));
             row.append($('<td>').text(value.adults));
             row.append($('<td>').text(checkin));
