@@ -79,9 +79,9 @@ class BookingsService
     /**
      * @throws \Exception
      */
-    public function updateBookingByFile($file)
+    public function updateBookingByFile($file, $id)
     {
         $data = $this->convertXml($file);
-        return $this->updateBooking($data);
+        return $this->updateBooking($id, $data);
     }
 }
