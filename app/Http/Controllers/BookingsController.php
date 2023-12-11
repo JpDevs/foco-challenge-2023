@@ -15,8 +15,8 @@ class BookingsController extends Controller
         'holder_email' => ['string'],
         'adults' => ['integer'],
         'kids' => ['integer'],
-        'check-in' => ['date'],
-        'check-out' => ['date'],
+        'check_in' => ['date'],
+        'check_out' => ['date'],
         'status' => ['integer']
     ];
 

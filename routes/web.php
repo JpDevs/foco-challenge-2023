@@ -14,5 +14,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('system.index');
+});
+
+Route::get('/booking/new', function () {
+    return view('system.create');
+});
+
+Route::get('/booking/new/manual', function () {
+    return view('system.manual-create');
+});
+
+Route::get('/booking/{id}', function () {
+    return view('system.show');
+});
+
+Route::get('/booking/{id}/edit', function () {
+    return view('system.edit');
+});
+
+Route::get('/booking/{id}/edit/xml', function () {
+    return view('system.edit-xml');
 });

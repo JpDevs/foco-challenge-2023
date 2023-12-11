@@ -20,9 +20,9 @@ return new class extends Migration {
             $table->string('holder_phone');
             $table->integer('adults');
             $table->integer('kids');
-            $table->date('check-in');
-            $table->date('check-out');
-            $table->set('status', [1, 2, 3, 4]);
+            $table->date('check_in');
+            $table->date('check_out');
+            $table->enum('status', [1, 2, 3, 4]);
 
             $table->timestamps();
         });

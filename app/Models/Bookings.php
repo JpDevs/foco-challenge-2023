@@ -20,8 +20,8 @@ class Bookings extends Model
         'holder_email',
         'adults',
         'kids',
-        'check-in',
-        'check-out',
+        'check_in',
+        'check_out',
         'status'
     ];
 

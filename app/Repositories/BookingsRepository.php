@@ -8,7 +8,7 @@ class BookingsRepository
 {
     public function all()
     {
-        return Bookings::all();
+        return Bookings::orderBy('id','desc')->get();
     }
 
     public function find(int $id)

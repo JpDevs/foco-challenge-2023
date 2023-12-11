@@ -41,6 +41,9 @@ class BookingsService
         });
     }
 
+    /**
+     * @throws \Exception
+     */
     public function createBookingByFile($file)
     {
         $data = $this->convertXml($file);
@@ -65,8 +68,8 @@ class BookingsService
             $data['holder_phone'] = "{$booking->Booking->PrimaryGuest->Phone['countryCode']} {$booking->Booking->PrimaryGuest->Phone['cityAreaCode']} {$booking->Booking->PrimaryGuest->Phone['number']}";
             $data['adults'] = $booking->Booking->RoomStay->GuestCount['adult'];
             $data['kids'] = $booking->Booking->RoomStay->GuestCount['child'];
-            $data['check-in'] = $booking->Booking->RoomStay->StayDate['arrival'];
-            $data['check-out'] = $booking->Booking->RoomStay->StayDate['departure'];
+            $data['check_in'] = $booking->Booking->RoomStay->StayDate['arrival'];
+            $data['check_out'] = $booking->Booking->RoomStay->StayDate['departure'];
             $data['status'] = $status;
         }
         return $data;
