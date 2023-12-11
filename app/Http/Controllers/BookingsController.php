@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class BookingsController extends Controller
 {
     protected $bookingsService;
+
     protected $rules = [
         'booking_holder' => ['string', 'required'],
         'holder_phone' => ['string'],
