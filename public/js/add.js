@@ -32,7 +32,7 @@ $('#booking_form').submit(function (e) {
                 alert.style.display = 'block'
             } else {
                 let alert = document.getElementById('alert')
-                alert.innerHTML = "Erro ao adicionar resevra: " + error.responseJSON.message
+                alert.innerHTML = "Erro ao adicionar reserva: " + error.responseJSON.message
                 alert.classList.add('alert-danger')
                 alert.style.display = 'block'
             }
