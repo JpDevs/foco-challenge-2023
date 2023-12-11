@@ -15,10 +15,6 @@ use App\Http\Controllers\BookingsController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::resource('/bookings', BookingsController::class);
 Route::post('/bookings/xml/upload', [BookingsController::class, 'storeFile']);
 Route::post('/bookings/{id}/xml', [BookingsController::class, 'updateFile']);
