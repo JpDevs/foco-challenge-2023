@@ -16,20 +16,13 @@ class Bookings extends Model
         'id',
         'booking_code',
         'booking_holder',
-        'holder_document',
         'holder_phone',
         'holder_email',
         'adults',
         'kids',
-        'payment_method',
         'check-in',
         'check-out',
         'status'
     ];
-
-    public function cards()
-    {
-        return $this->hasMany(Bookings::class, 'booking_id', 'id');
-    }
 
 }

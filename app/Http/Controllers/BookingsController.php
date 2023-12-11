@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\BookingConstants;
 use App\Services\BookingsService;
 use Illuminate\Http\Request;
 
 class BookingsController extends Controller
 {
     protected $bookingsService;
+    protected $rules = [
+        'booking_holder' => ['string', 'required'],
+        'holder_phone' => ['string'],
+        'holder_email' => ['string'],
+        'adults' => ['integer'],
+        'kids' => ['integer'],
+        'check-in' => ['date'],
+        'check-out' => ['date'],
+        'status' => ['integer']
+    ];
 
     public function __construct(BookingsService $bookingsService)
     {
@@ -33,11 +44,18 @@ class BookingsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function create()
     {
-        //
+        return $this->setResponse([
+            'status' => [
+                BookingConstants::PENDING => 'pending',
+                BookingConstants::CONFIRMED => 'confirmed',
+                BookingConstants::RETRIEVED => 'retrieved',
+                BookingConstants::CANCEL => 'cancel',
+            ]
+        ]);
     }
 
 
@@ -49,7 +67,13 @@ class BookingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $validated = $this->validated();
+            return $this->bookingsService->createBooking($validated);
+
+        } catch (\Exception $e) {
+            return $this->setError($e);
+        }
     }
 
     public function storeFile(Request $request)
@@ -73,7 +97,12 @@ class BookingsController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $response = $this->bookingsService->getBookingById($id);
+            return $this->setResponse($response);
+        } catch (\Exception $e) {
+            return $this->setError($e);
+        }
     }
 
     /**
@@ -84,7 +113,18 @@ class BookingsController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $response['booking'] = $this->bookingsService->getBookingById($id);
+            $response['status'] = [
+                BookingConstants::PENDING => 'pending',
+                BookingConstants::CONFIRMED => 'confirmed',
+                BookingConstants::RETRIEVED => 'retrieved',
+                BookingConstants::CANCEL => 'cancel',
+            ];
+            return $this->setResponse($response);
+        } catch (\Exception $e) {
+            return $this->setError($e);
+        }
     }
 
     /**
@@ -97,7 +137,8 @@ class BookingsController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $response = null;
+            $validated = $this->validated();
+            $response = $this->bookingsService->updateBooking($id, $validated);
             return $this->setResponse($response);
         } catch (\Exception $e) {
             return $this->setError($e);
@@ -121,10 +162,15 @@ class BookingsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+        try {
+            $this->bookingsService->deleteBooking($id);
+            return $this->setResponse(null, 204);
+        } catch (\Exception $e) {
+            return $this->setError($e);
+        }
     }
 }

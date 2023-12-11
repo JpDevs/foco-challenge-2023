@@ -34,6 +34,9 @@ class BookingsService
     public function createBooking(array $data)
     {
         return DB::transaction(function () use ($data) {
+            if (!isset($data['booking_code'])) {
+                $data['booking_code'] = uniqid();
+            }
             return Bookings::create($data);
         });
     }
@@ -83,5 +86,12 @@ class BookingsService
     {
         $data = $this->convertXml($file);
         return $this->updateBooking($id, $data);
+    }
+
+    public function deleteBooking($id)
+    {
+        return DB::transaction(function () use ($id) {
+            return Bookings::where('id', $id)->firstOrFail()->delete();
+        });
     }
 }
