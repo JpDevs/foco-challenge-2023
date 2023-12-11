@@ -150,7 +150,7 @@ curl -X GET https://foco-challenge.jpdevs.cloud/api/bookings/1
 
 ### Create
 
-- **Endpoint:** `/api/bookings`
+- **Endpoint:** `/api/bookings/create`
 - **Método:** GET
 - **Descrição:** Retorna os dados externos necessários para a criação de uma nova reserva.
 - **Parâmetros de Consulta:**
