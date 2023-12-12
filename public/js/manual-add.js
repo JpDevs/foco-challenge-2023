@@ -11,7 +11,7 @@ $(document).ready(function () {
             status: $('#status').val()
         }
         $.ajax({
-            url: '/api/bookings/',
+            url: '/api/bookings',
             type: "POST",
             data: data,
             success: function (data) {
