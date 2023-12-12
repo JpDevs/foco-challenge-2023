@@ -1,6 +1,6 @@
 @extends('template.layout')
 @section('title')
-    Adicionar Reserva<br>
+    Editar Reserva<br>
 @endsection
 @section('nav')
     <a href="/">Inicio </a>/ <a href="../edit">Editar Reserva </a>/ Carregar XML
