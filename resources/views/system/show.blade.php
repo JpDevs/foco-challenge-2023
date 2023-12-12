@@ -24,7 +24,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="holder_phone">Telefone</label>
-                <input type="tel" readonly name="holder_phone" class="form-control" id="holder_phone"  value="" placeholder="exemplo@email.com">
+                <input type="tel" readonly name="holder_phone" class="form-control" id="holder_phone"  value="">
             </div></div>
         <hr>
         <div class="form-group row">
