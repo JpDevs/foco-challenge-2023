@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->integer('kids');
             $table->date('check_in');
             $table->date('check_out');
-            $table->enum('status', [1, 2, 3, 4]);
+            $table->enum('status', [0, 1, 2, 3]);
 
             $table->timestamps();
         });
